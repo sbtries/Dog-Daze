@@ -34,8 +34,11 @@
                 <button v-on:click="saveDog" v-if="dogPic"type="button" class="btn btn-info">Save This Dog</button>
             </div>
             </div>
-                <div v-if="pageNum==2">
-                <button v-on:click="saveAllDogs" type="button" class="btn btn-info">Save All These Dogs</button>
+            <div v-if="pageNum==2">
+                <button v-if="dogsList" v-on:click="saveAllDogs" type="button" class="btn btn-info">Save All These Dogs</button>
+                <h4v v-if="!dogsList">You haven't saved any dogs yet
+                <button v-on:click="getPage(1)" type="button" class="btn btn-outline-primary">Save Dog</button>
+                </h4>
                 <div v-for="dog in dogsList" class="card" style="width: 18rem;">
                     <img class="card-img-top" v-bind:src="dog.dogPic" alt="a dog pic">
                     <div class="card-body">
@@ -44,8 +47,19 @@
                           Breed: [[dog.breed]]
                       </p>
                     </div>
-                  </div>                
+                  </div>  
+            </div>              
             <div v-if="pageNum==3">
+                <h3>You've Saved These Dogs So Far:</h3>
+                <div v-for="dog in savedDogs" class="card" style="width: 18rem;">
+                    <img class="card-img-top" v-bind:src="dog.dogPic" alt="a dog pic">
+                    <div class="card-body">
+                      <h5 class="card-title">[[dog.name]]</h5>
+                      <p class="card-text">
+                          Breed: [[dog.breed]]
+                      </p>
+                    </div>
+                  </div> 
             </div>
             <div v-if="pageNum==4">
             </div>

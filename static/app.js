@@ -58,7 +58,7 @@ var app = new Vue({
       },
       saveAllDogs: function() {
         this.savedDogs = this.dogsList
-        localStorage.setItem(this.savedDogs, JSON.stringify(savedDogs))
+        localStorage.setItem("savedDogs", JSON.stringify(this.savedDogs))
       }
     },
   });
