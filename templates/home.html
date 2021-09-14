@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container p-3">
+        <div id="app">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button v-on:click="getPage(1)" type="button" class="btn btn-outline-primary">Save Dog</button>
+                <button v-on:click="getPage(2)"type="button" class="btn btn-outline-secondary">See All Dogs</button>
+                <button v-on:click="getPage(3)" type="button" class="btn btn-outline-success">See Saved Dogs</button>
+                <button v-on:click="getPage(4)" type="button" class="btn btn-outline-danger"> ?</button>
+                <button v-on:click="getPage(5)" type="button" class="btn btn-outline-warning">?</button>
+                <button v-on:click="getPage(6)" type="button" class="btn btn-outline-info">?</button>
+    
+            </div>
+            <h3>Dogs R Us</h3>
+            <div v-if="pageNum===1">
+                <p>Type your dog's name, select their breed and find a picture</p>
+                <div class="form-floating">
+                <input type="text" id="todo" class="form-control" v-on:keyup.enter="" v-model="dogName"/>
+                <label for="todo">Dog Name</label>
+                <select class="form-control" v-model="dogBreed" @change="getPic">
+                    <option v-for="dog in breedsList">[[dog]]</option>
+                </select>
+                <img v-if="dogPic" v-bind:src="dogPic" class="img-fluid" alt="...">
+                <button v-on:click="getPic" v-if="dogPic"type="button" class="btn btn-secondary">Not my dog, try again</button>
+                <button v-on:click="saveDog" v-if="dogPic"type="button" class="btn btn-info">Save This Dog</button>
+            </div>
+            </div>
+                <div v-if="pageNum==2">
+                <button v-on:click="saveAllDogs" type="button" class="btn btn-info">Save All These Dogs</button>
+                <div v-for="dog in dogsList" class="card" style="width: 18rem;">
+                    <img class="card-img-top" v-bind:src="dog.dogPic" alt="a dog pic">
+                    <div class="card-body">
+                      <h5 class="card-title">[[dog.name]]</h5>
+                      <p class="card-text">
+                          Breed: [[dog.breed]]
+                      </p>
+                    </div>
+                  </div>                
+            <div v-if="pageNum==3">
+            </div>
+            <div v-if="pageNum==4">
+            </div>
+            <div v-if="pageNum==5">
+            </div>
+            <div v-if="pageNum==6">
+            </div>
+        </div>
+        </div>
+        </div>
+    <!-- cdn for vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!-- cdn for axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- my scripts :)  -->
+<script src="{% static 'app.js' %}"></script>
+</body>
+</html>
